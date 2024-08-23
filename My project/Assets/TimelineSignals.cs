@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 using DG.Tweening;
 
 public class TimelineSignals : MonoBehaviour
@@ -10,15 +11,25 @@ public class TimelineSignals : MonoBehaviour
     public void Timeline_MoveMaskLeft(GameObject mask)
     {
         Vector3 startPos = mask.transform.position;
-        float x = startPos.x - 3;
-        mask.transform.DOMoveX(x, 3f).SetEase(Ease.OutExpo);
+        float x = startPos.x - 1;
+        float y = startPos.x - 3;
+        mask.transform.DOMoveX(y, 3.5f).SetEase(Ease.OutExpo);
+        //    .OnComplete(() =>
+        //{
+        //    mask.transform.DOMoveX(y, 3f);
+        //});
     }
 
     public void Timeline_MoveMaskRight(GameObject mask)
     {
         Vector3 startPos = mask.transform.position;
-        float x = startPos.x + 3;
-        mask.transform.DOMoveX(x, 3f).SetEase(Ease.OutExpo);
+        float x = startPos.x + 1;
+        float y = startPos.x + 3;
+        mask.transform.DOMoveX(y, 3.5f).SetEase(Ease.OutExpo);
+        //    .OnComplete(() =>
+        //{
+        //    mask.transform.DOMoveX(y, 3f);
+        //});
     }
 
     public void Timeline_PlayVFX(ParticleSystem vfx)
@@ -54,4 +65,9 @@ public class TimelineSignals : MonoBehaviour
 
     public void Timeline_ImageFadeOut(Image image) => image.DOFade(1, 2.5f);
     public void Timeline_ImageFadeIn(Image image) => image.DOFade(0, 1.5f);
+
+    public void Timeline_ScreenShake(CinemachineImpulseSource source)
+    {
+        source.GenerateImpulse();
+    } 
 }
